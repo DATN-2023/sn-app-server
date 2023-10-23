@@ -1,5 +1,6 @@
 module.exports = container => {
   const userHelper = require('./userHelper')(container)
-  const testHelper = require('./testHelper')(container)
-  return { userHelper, testHelper }
+  const feedCdcHelper = require('./feedCdcHelper')(container)
+  const feedSdpHelper = require('./feedSdpHelper')(container)
+  return { userHelper, feedCdcHelper, feedSdpHelper }
 }

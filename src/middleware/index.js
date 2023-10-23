@@ -4,15 +4,12 @@ module.exports = (container) => {
     httpCode
   } = container.resolve('config')
   const logger = container.resolve('logger')
+  const { userHelper } = container.resolve('helper')
   const verifyToken = async (req, res, next) => {
     const token = req.headers['x-access-token'] || req.body.token || ''
     if (!token) {
       console.log('UNAUTHORIZED 66')
       return res.status(httpCode.UNAUTHORIZED).json({})
-    }
-    if (token === TOKEN_SSR) {
-      req.userCache = {}
-      return next()
     }
     const decode = serverHelper.decodeToken(token)
     if (!decode) {

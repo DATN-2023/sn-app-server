@@ -1,6 +1,7 @@
 const repo = (container) => {
-  const testRepo = require('./testRepo')(container)
-  return { testRepo }
+  const feedRepo = require('./feedRepo')(container)
+  const jobRepo = require('./jobRepo')(container)
+  return { feedRepo, jobRepo }
 }
 const connect = (container) => {
   const dbPool = container.resolve('redisHelper')

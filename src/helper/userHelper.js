@@ -4,7 +4,7 @@ module.exports = container => {
 
   async function getUserDetail (token) {
     try {
-      const { data } = await axios.get(`${urlConfig.customer}/detailCache`, {
+      const { data } = await axios.get(`${urlConfig.customerUrl}/detailCache`, {
         headers: {
           'x-access-token': token
         }

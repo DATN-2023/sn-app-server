@@ -1,5 +1,5 @@
 const serverSettings = {
-  port: process.env.PORT || 8004,
+  port: process.env.PORT || 8000,
   basePath: process.env.BASE_PATH || ''
 }
 
@@ -85,6 +85,8 @@ const redisConfig = {
 }
 
 const urlConfig = {
-  testUrl: 'http://localhost:3000'
+  cdcUrl: process.env.CDC_URL || 'http://localhost:8002',
+  sdpUrl: process.env.SDP_URL || 'http://localhost:8001',
+  customerUrl: process.env.CUSTOMER_URL || 'http://localhost:8005',
 }
 module.exports = { dbSettings, serverHelper: serverHelper(), serverSettings, httpCode, redisConfig, urlConfig, eventConfig }
