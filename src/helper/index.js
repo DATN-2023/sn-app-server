@@ -2,5 +2,17 @@ module.exports = container => {
   const userHelper = require('./userHelper')(container)
   const feedCdcHelper = require('./feedCdcHelper')(container)
   const feedSdpHelper = require('./feedSdpHelper')(container)
-  return { userHelper, feedCdcHelper, feedSdpHelper }
+  const commentSdpHelper = require('./commentSdpHelper')(container)
+  const commentCdcHelper = require('./commentCdcHelper')(container)
+  const reactionCdcHelper = require('./reactionCdcHelper')(container)
+  const reactionSdpHelper = require('./reactionSdpHelper')(container)
+  return {
+    userHelper,
+    feedCdcHelper,
+    feedSdpHelper,
+    commentSdpHelper,
+    commentCdcHelper,
+    reactionCdcHelper,
+    reactionSdpHelper
+  }
 }
