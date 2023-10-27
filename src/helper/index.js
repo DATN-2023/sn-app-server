@@ -6,6 +6,7 @@ module.exports = container => {
   const commentCdcHelper = require('./commentCdcHelper')(container)
   const reactionCdcHelper = require('./reactionCdcHelper')(container)
   const reactionSdpHelper = require('./reactionSdpHelper')(container)
+  const uploadSdpHelper = require('./uploadSdpHelper')(container)
   return {
     userHelper,
     feedCdcHelper,
@@ -13,6 +14,7 @@ module.exports = container => {
     commentSdpHelper,
     commentCdcHelper,
     reactionCdcHelper,
-    reactionSdpHelper
+    reactionSdpHelper,
+    uploadSdpHelper
   }
 }
