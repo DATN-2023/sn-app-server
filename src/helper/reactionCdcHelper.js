@@ -42,13 +42,14 @@ module.exports = (container) => {
       return { statusCode: httpCode.BAD_REQUEST, msg: '' }
     }
   }
-  const deleteReaction = async (id) => {
+  const deleteReaction = async (id, body) => {
     try {
       const options = {
         headers: { 'x-access-token': accessToken },
         url: `${cdcUrl}/reactions/${id}`,
         json: true,
-        method: 'DELETE'
+        method: 'DELETE',
+        data: body
       }
       const { data } = await axios(options)
       return { statusCode: httpCode.SUCCESS, data }

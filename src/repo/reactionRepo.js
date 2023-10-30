@@ -19,8 +19,8 @@ module.exports = container => {
     return reactionCdcHelper.updateReaction(id, body)
   }
 
-  const deleteReaction = async (id) => {
-    return reactionCdcHelper.deleteReaction(id)
+  const deleteReaction = async (id, body) => {
+    return reactionCdcHelper.deleteReaction(id, body)
   }
   return {
     createReaction,

@@ -39,7 +39,9 @@ module.exports = (container) => {
   const deleteReaction = async (req, res) => {
     try {
       const { id } = req.params
-      const { statusCode, data, msg } = await reactionRepo.deleteReaction(id)
+      const { _id } = req.userToken
+      const body = { createdBy: _id }
+      const { statusCode, data, msg } = await reactionRepo.deleteReaction(id, body)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(httpCode.BAD_REQUEST).json(msg)
       }

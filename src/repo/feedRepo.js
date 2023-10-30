@@ -3,8 +3,9 @@ module.exports = container => {
   const { feedCdcHelper, feedSdpHelper } = container.resolve('helper')
 
   const getFeed = async (q) => {
-    const key = `getFeed-${q.constructor === Object ? JSON.stringify(q) : q}`
-    return handleCacheOnRepo(key, feedSdpHelper.getFeed, q)
+    // const key = `getFeed-${q.constructor === Object ? JSON.stringify(q) : q}`
+    // return handleCacheOnRepo(key, feedSdpHelper.getFeed, q)
+    return feedSdpHelper.getFeed(q)
   }
   const getFeedById = async (id) => {
     const key = `getFeedById-${id}`
