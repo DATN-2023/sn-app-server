@@ -69,7 +69,8 @@ module.exports = (container) => {
   const getFeedById = async (req, res) => {
     try {
       const { id } = req.params
-      const { statusCode, data, msg } = await feedRepo.getFeedById(id)
+      const { _id } = req.userToken
+      const { statusCode, data, msg } = await feedRepo.getFeedById(`${id}-${_id}`)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
