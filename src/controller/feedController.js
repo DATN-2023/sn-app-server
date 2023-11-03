@@ -21,10 +21,10 @@ module.exports = (container) => {
 
   const updateFeed = async (req, res) => {
     try {
-      const { _id } = req.userToken
+      // const { _id } = req.userToken
       const { id } = req.params
       const body = req.body
-      body.createdBy = _id
+      // body.createdBy = _id
       const { statusCode, data, msg } = await feedRepo.updateFeed(id, body)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(httpCode.BAD_REQUEST).json(msg)
