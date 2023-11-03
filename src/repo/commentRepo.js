@@ -3,8 +3,9 @@ module.exports = container => {
   const { commentCdcHelper, commentSdpHelper } = container.resolve('helper')
 
   const getComment = async (q) => {
-    const key = `getComment-${q.constructor === Object ? JSON.stringify(q) : q}`
-    return handleCacheOnRepo(key, commentSdpHelper.getComment, q)
+    // const key = `getComment-${q.constructor === Object ? JSON.stringify(q) : q}`
+    // return handleCacheOnRepo(key, commentSdpHelper.getComment, q)
+    return commentSdpHelper.getComment(q)
   }
   const getCommentById = async (id) => {
     const key = `getCommentById-${id}`
