@@ -52,7 +52,10 @@ module.exports = (container) => {
 
   const getComment = async (req, res) => {
     try {
-      const { statusCode, data, msg } = await commentRepo.getComment(req.query)
+      const { _id } = req.userToken
+      const query = req.query
+      query.createdBy = _id
+      const { statusCode, data, msg } = await commentRepo.getComment(query)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
