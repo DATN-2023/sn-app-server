@@ -3,5 +3,7 @@ module.exports = (container) => {
   const commentController = require('./commentController')(container)
   const reactionController = require('./reactionController')(container)
   const uploadController = require('./uploadController')(container)
-  return { feedController, commentController, reactionController, uploadController }
+  const userController = require('./userController')(container)
+  const friendController = require('./friendController')(container)
+  return { feedController, commentController, reactionController, uploadController, userController, friendController }
 }

@@ -1,14 +1,15 @@
 module.exports = (container) => {
   const logger = container.resolve('logger')
   const { httpCode, serverHelper } = container.resolve('config')
-  const { commentRepo } = container.resolve('repo')
+  const { userRepo } = container.resolve('repo')
 
-  const createComment = async (req, res) => {
+  const createUser = async (req, res) => {
     try {
-      const { _id } = req.userToken
+      const { _id, avatar } = req.userToken
       const body = req.body
-      body.createdBy = _id
-      const { statusCode, data, msg } = await commentRepo.createComment(body)
+      body.customerId = _id
+      body.avatar = avatar
+      const { statusCode, data, msg } = await userRepo.createUser(body)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(httpCode.BAD_REQUEST).json(msg)
       }
@@ -19,11 +20,11 @@ module.exports = (container) => {
     }
   }
 
-  const updateComment = async (req, res) => {
+  const updateUser = async (req, res) => {
     try {
       const { id } = req.params
       const body = req.body
-      const { statusCode, data, msg } = await commentRepo.updateComment(id, body)
+      const { statusCode, data, msg } = await userRepo.updateUser(id, body)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(httpCode.BAD_REQUEST).json(msg)
       }
@@ -34,10 +35,10 @@ module.exports = (container) => {
     }
   }
 
-  const deleteComment = async (req, res) => {
+  const deleteUser = async (req, res) => {
     try {
       const { id } = req.params
-      const { statusCode, data, msg } = await commentRepo.deleteComment(id)
+      const { statusCode, data, msg } = await userRepo.deleteUser(id)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(httpCode.BAD_REQUEST).json(msg)
       }
@@ -48,12 +49,11 @@ module.exports = (container) => {
     }
   }
 
-  const getComment = async (req, res) => {
+  const getUser = async (req, res) => {
     try {
       const { _id } = req.userToken
       const query = req.query
-      query.createdBy = _id
-      const { statusCode, data, msg } = await commentRepo.getComment(query)
+      const { statusCode, data, msg } = await userRepo.getUser(query)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
@@ -64,10 +64,10 @@ module.exports = (container) => {
     }
   }
 
-  const getCommentById = async (req, res) => {
+  const getUserById = async (req, res) => {
     try {
       const { id } = req.params
-      const { statusCode, data, msg } = await commentRepo.getCommentById(id)
+      const { statusCode, data, msg } = await userRepo.getUserById(id)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
@@ -79,10 +79,10 @@ module.exports = (container) => {
   }
 
   return {
-    createComment,
-    updateComment,
-    deleteComment,
-    getCommentById,
-    getComment
+    createUser,
+    updateUser,
+    deleteUser,
+    getUserById,
+    getUser
   }
 }

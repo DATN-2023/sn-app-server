@@ -4,7 +4,8 @@ const repo = (container) => {
   const reactionRepo = require('./reactionRepo')(container)
   const jobRepo = require('./jobRepo')(container)
   const uploadRepo = require('./uploadRepo')(container)
-  return { feedRepo, jobRepo, commentRepo, reactionRepo, uploadRepo }
+  const userRepo = require('./userRepo')(container)
+  return { feedRepo, jobRepo, commentRepo, reactionRepo, uploadRepo, userRepo }
 }
 const connect = (container) => {
   const dbPool = container.resolve('redisHelper')
