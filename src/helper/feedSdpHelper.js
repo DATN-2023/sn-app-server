@@ -43,8 +43,27 @@ module.exports = (container) => {
       return { statusCode: httpCode.BAD_REQUEST, msg: '' }
     }
   }
+  const getFeedsOfUser = async (id) => {
+    try {
+      const options = {
+        headers: { 'x-access-token': accessToken },
+        url: `${sdpUrl}/feeds/users/${id}`,
+        json: true,
+        method: 'GET'
+      }
+      const { data } = await axios(options)
+      return { statusCode: httpCode.SUCCESS, data }
+    } catch (e) {
+      const { name, statusCode, error } = e
+      if (name === 'StatusCodeError') {
+        return { data: error, statusCode, msg: (error || {}).msg || '' }
+      }
+      return { statusCode: httpCode.BAD_REQUEST, msg: '' }
+    }
+  }
   return {
     getFeed,
-    getFeedById
+    getFeedById,
+    getFeedsOfUser
   }
 }

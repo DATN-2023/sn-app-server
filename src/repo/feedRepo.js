@@ -12,6 +12,11 @@ module.exports = container => {
     return handleCacheOnRepo(key, feedSdpHelper.getFeedById, id)
   }
 
+  const getFeedsOfUser = async (id) => {
+    const key = `getFeedsOfUser-${id}`
+    return handleCacheOnRepo(key, feedSdpHelper.getFeedsOfUser, id)
+  }
+
   const createFeed = async (body) => {
     return feedCdcHelper.createFeed(body)
   }
@@ -28,6 +33,7 @@ module.exports = container => {
     updateFeed,
     deleteFeed,
     getFeed,
-    getFeedById
+    getFeedById,
+    getFeedsOfUser
   }
 }

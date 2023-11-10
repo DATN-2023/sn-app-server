@@ -6,5 +6,6 @@ module.exports = (app, container) => {
   app.delete(`${basePath}/feeds/:id`, feedController.deleteFeed)
   app.post(`${basePath}/feeds`, feedController.createFeed)
   app.get(`${basePath}/feeds`, feedController.getFeed)
+  app.get(`${basePath}/feeds/users/:id`, feedController.getFeedsOfUser)
   app.get(`${basePath}/feeds/:id`, feedController.getFeedById)
 }
