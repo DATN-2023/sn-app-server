@@ -54,7 +54,7 @@ module.exports = (container) => {
     try {
       const { _id } = req.userToken
       const query = req.query
-      query.createdBy = _id
+      query.userRequest = _id
       const { statusCode, data, msg } = await feedRepo.getFeed(query)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
@@ -83,8 +83,9 @@ module.exports = (container) => {
 
   const getFeedsOfUser = async (req, res) => {
     try {
+      const { _id } = req.userToken
       const { id } = req.params
-      const { statusCode, data, msg } = await feedRepo.getFeedsOfUser(id)
+      const { statusCode, data, msg } = await feedRepo.getFeedsOfUser(`${id}-${_id}`)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
