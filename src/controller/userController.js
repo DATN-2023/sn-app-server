@@ -67,7 +67,9 @@ module.exports = (container) => {
   const getUserById = async (req, res) => {
     try {
       const { id } = req.params
-      const { statusCode, data, msg } = await userRepo.getUserById(id)
+      const { _id } = req.userToken
+      const query = { userId: _id }
+      const { statusCode, data, msg } = await userRepo.getUserById({ id, query })
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }

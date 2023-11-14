@@ -7,7 +7,7 @@ module.exports = (container) => {
     try {
       const { _id } = req.userToken
       const body = req.body
-      body.createdBy = _id
+      body.sender = _id
       const { statusCode, data, msg } = await userRepo.createFriend(body)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(httpCode.BAD_REQUEST).json(msg)

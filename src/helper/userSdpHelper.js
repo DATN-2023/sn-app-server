@@ -25,13 +25,15 @@ module.exports = (container) => {
     }
   }
 
-  const getUserById = async (id) => {
+  const getUserById = async (dataGet) => {
     try {
+      const { id, query } = dataGet
       const options = {
         headers: { 'x-access-token': accessToken },
         url: `${sdpUrl}/users/${id}`,
         json: true,
-        method: 'GET'
+        method: 'GET',
+        params: query
       }
       const { data } = await axios(options)
       return { statusCode: httpCode.SUCCESS, data }
