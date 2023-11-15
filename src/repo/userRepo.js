@@ -8,8 +8,9 @@ module.exports = container => {
     // return userSdpHelper.getUser(q)
   }
   const getUserById = async (id) => {
-    const key = `getUserById-${id}`
-    return handleCacheOnRepo(key, userSdpHelper.getUserById, id)
+    // const key = `getUserById-${id}`
+    // return handleCacheOnRepo(key, userSdpHelper.getUserById, id)
+    return userSdpHelper.getUserById(id)
   }
   const getFriend = async (q) => {
     const key = `getFriend-${q.constructor === Object ? JSON.stringify(q) : q}`
