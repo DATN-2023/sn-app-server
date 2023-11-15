@@ -80,11 +80,28 @@ module.exports = (container) => {
     }
   }
 
+  const getMe = async (req, res) => {
+    try {
+      // const { id } = req.params
+      const { _id } = req.userToken
+      const query = { userId: _id }
+      const { statusCode, data, msg } = await userRepo.getUserById({ id: _id, query })
+      if (statusCode !== httpCode.SUCCESS) {
+        return res.status(statusCode).json({ msg })
+      }
+      return res.status(httpCode.SUCCESS).json(data)
+    } catch (e) {
+      logger.e(e)
+      res.status(httpCode.UNKNOWN_ERROR).json({ msg: 'UNKNOWN ERROR' })
+    }
+  }
+
   return {
     createUser,
     updateUser,
     deleteUser,
     getUserById,
-    getUser
+    getUser,
+    getMe
   }
 }

@@ -6,5 +6,6 @@ module.exports = (app, container) => {
   app.delete(`${basePath}/users/:id`, userController.deleteUser)
   app.post(`${basePath}/users`, userController.createUser)
   app.get(`${basePath}/users`, userController.getUser)
+  app.get(`${basePath}/users/me`, userController.getMe)
   app.get(`${basePath}/users/:id`, userController.getUserById)
 }
