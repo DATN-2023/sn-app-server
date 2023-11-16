@@ -5,5 +5,18 @@ module.exports = (container) => {
   const uploadController = require('./uploadController')(container)
   const userController = require('./userController')(container)
   const friendController = require('./friendController')(container)
-  return { feedController, commentController, reactionController, uploadController, userController, friendController }
+  const groupController = require('./groupController')(container)
+  const userGroupController = require('./userGroupController')(container)
+  const modController = require('./modController')(container)
+  return {
+    feedController,
+    commentController,
+    reactionController,
+    uploadController,
+    userController,
+    friendController,
+    groupController,
+    userGroupController,
+    modController
+  }
 }

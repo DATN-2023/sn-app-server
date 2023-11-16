@@ -9,6 +9,12 @@ module.exports = container => {
   const uploadSdpHelper = require('./uploadSdpHelper')(container)
   const userSdpHelper = require('./userSdpHelper')(container)
   const userCdcHelper = require('./userCdcHelper')(container)
+  const groupCdcHelper = require('./groupCdcHelper')(container)
+  const groupSdpHelper = require('./groupSdpHelper')(container)
+  const userGroupSdpHelper = require('./userGroupSdpHelper')(container)
+  const userGroupCdcHelper = require('./userGroupCdcHelper')(container)
+  const modCdcHelper = require('./modCdcHelper')(container)
+  const modSdpHelper = require('./modSdpHelper')(container)
   return {
     userHelper,
     feedCdcHelper,
@@ -19,6 +25,12 @@ module.exports = container => {
     reactionSdpHelper,
     uploadSdpHelper,
     userSdpHelper,
-    userCdcHelper
+    userCdcHelper,
+    groupCdcHelper,
+    groupSdpHelper,
+    userGroupCdcHelper,
+    userGroupSdpHelper,
+    modCdcHelper,
+    modSdpHelper
   }
 }
