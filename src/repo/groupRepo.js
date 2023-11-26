@@ -7,6 +7,11 @@ module.exports = container => {
     // return handleCacheOnRepo(key, groupSdpHelper.getGroup, q)
     return groupSdpHelper.getGroup(q)
   }
+  const getJoiningGroups = async (q) => {
+    // const key = `getJoiningGroups-${q.constructor === Object ? JSON.stringify(q) : q}`
+    // return handleCacheOnRepo(key, groupSdpHelper.getJoiningGroups, q)
+    return groupSdpHelper.getJoiningGroups(q)
+  }
   const getGroupById = async (id) => {
     const key = `getGroupById-${id}`
     return handleCacheOnRepo(key, groupSdpHelper.getGroupById, id)
@@ -28,6 +33,7 @@ module.exports = container => {
     updateGroup,
     deleteGroup,
     getGroup,
-    getGroupById
+    getGroupById,
+    getJoiningGroups
   }
 }

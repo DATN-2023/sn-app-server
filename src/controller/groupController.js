@@ -50,9 +50,24 @@ module.exports = (container) => {
 
   const getGroup = async (req, res) => {
     try {
-      const { _id } = req.userToken
       const query = req.query
       const { statusCode, data, msg } = await groupRepo.getGroup(query)
+      if (statusCode !== httpCode.SUCCESS) {
+        return res.status(statusCode).json({ msg })
+      }
+      return res.status(httpCode.SUCCESS).json(data)
+    } catch (e) {
+      logger.e(e)
+      res.status(httpCode.UNKNOWN_ERROR).json({ msg: 'UNKNOWN ERROR' })
+    }
+  }
+
+  const getJoiningGroups = async (req, res) => {
+    try {
+      const {_id} = req.userToken
+      const query = req.query
+      query.user = _id
+      const { statusCode, data, msg } = await groupRepo.getJoiningGroups(query)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
@@ -82,6 +97,7 @@ module.exports = (container) => {
     updateGroup,
     deleteGroup,
     getGroupById,
-    getGroup
+    getGroup,
+    getJoiningGroups
   }
 }

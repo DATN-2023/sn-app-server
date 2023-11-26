@@ -6,5 +6,6 @@ module.exports = (app, container) => {
   app.delete(`${basePath}/groups/:id`, groupController.deleteGroup)
   app.post(`${basePath}/groups`, groupController.createGroup)
   app.get(`${basePath}/groups`, groupController.getGroup)
+  app.get(`${basePath}/groups/joining`, groupController.getJoiningGroups)
   app.get(`${basePath}/groups/:id`, groupController.getGroupById)
 }
