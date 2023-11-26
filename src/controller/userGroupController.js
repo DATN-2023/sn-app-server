@@ -34,10 +34,40 @@ module.exports = (container) => {
     }
   }
 
+  const approveUserGroup = async (req, res) => {
+    try {
+      const { id } = req.params
+      const body = {}
+      body.status = 1
+      const { statusCode, data, msg } = await userGroupRepo.updateUserGroup(id, body)
+      if (statusCode !== httpCode.SUCCESS) {
+        return res.status(httpCode.BAD_REQUEST).json(msg)
+      }
+      res.status(statusCode).json(data)
+    } catch (e) {
+      logger.e(e)
+      res.status(httpCode.UNKNOWN_ERROR).json({ msg: 'UNKNOWN ERROR' })
+    }
+  }
+
   const deleteUserGroup = async (req, res) => {
     try {
       const { id } = req.params
       const { statusCode, data, msg } = await userGroupRepo.deleteUserGroup(id)
+      if (statusCode !== httpCode.SUCCESS) {
+        return res.status(httpCode.BAD_REQUEST).json(msg)
+      }
+      res.status(statusCode).json(data)
+    } catch (e) {
+      logger.e(e)
+      res.status(httpCode.UNKNOWN_ERROR).json({ msg: 'UNKNOWN ERROR' })
+    }
+  }
+
+  const deleteUserGroupByUserAndGroup = async (req, res) => {
+    try {
+      const body = req.body
+      const { statusCode, data, msg } = await userGroupRepo.deleteUserGroupByUserAndGroup(body)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(httpCode.BAD_REQUEST).json(msg)
       }
@@ -82,6 +112,8 @@ module.exports = (container) => {
     updateUserGroup,
     deleteUserGroup,
     getUserGroupById,
-    getUserGroup
+    getUserGroup,
+    deleteUserGroupByUserAndGroup,
+    approveUserGroup
   }
 }

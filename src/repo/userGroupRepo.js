@@ -23,11 +23,15 @@ module.exports = container => {
   const deleteUserGroup = async (id) => {
     return userGroupCdcHelper.deleteUserGroup(id)
   }
+  const deleteUserGroupByUserAndGroup = async (body) => {
+    return userGroupCdcHelper.deleteUserGroupByUserAndGroup(body)
+  }
   return {
     createUserGroup,
     updateUserGroup,
     deleteUserGroup,
     getUserGroup,
-    getUserGroupById
+    getUserGroupById,
+    deleteUserGroupByUserAndGroup
   }
 }

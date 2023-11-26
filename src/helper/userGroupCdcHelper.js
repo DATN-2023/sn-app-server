@@ -1,3 +1,4 @@
+const axios = require("axios");
 module.exports = (container) => {
   const { urlConfig: { cdcUrl }, httpCode } = container.resolve('config')
   const logger = container.resolve('logger')
@@ -60,9 +61,29 @@ module.exports = (container) => {
       return { statusCode: httpCode.BAD_REQUEST, msg: '' }
     }
   }
+  const deleteUserGroupByUserAndGroup = async (body) => {
+    try {
+      const options = {
+        headers: { 'x-access-token': accessToken },
+        url: `${cdcUrl}/userGroups`,
+        json: true,
+        data: body,
+        method: 'DELETE'
+      }
+      const { data } = await axios(options)
+      return { statusCode: httpCode.SUCCESS, data }
+    } catch (e) {
+      const { name, statusCode, error } = e
+      if (name === 'StatusCodeError') {
+        return { data: error, statusCode, msg: (error || {}).msg || '' }
+      }
+      return { statusCode: httpCode.BAD_REQUEST, msg: '' }
+    }
+  }
   return {
     createUserGroup,
     updateUserGroup,
-    deleteUserGroup
+    deleteUserGroup,
+    deleteUserGroupByUserAndGroup
   }
 }

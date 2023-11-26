@@ -80,8 +80,9 @@ module.exports = (container) => {
 
   const getGroupById = async (req, res) => {
     try {
+      const {_id} = req.userToken
       const { id } = req.params
-      const { statusCode, data, msg } = await groupRepo.getGroupById(id)
+      const { statusCode, data, msg } = await groupRepo.getGroupById(`${id}-${_id}`)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
