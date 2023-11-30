@@ -8,7 +8,8 @@ const repo = (container) => {
   const groupRepo = require('./groupRepo')(container)
   const userGroupRepo = require('./userGroupRepo')(container)
   const modRepo = require('./modRepo')(container)
-  return { feedRepo, jobRepo, commentRepo, reactionRepo, uploadRepo, userRepo, groupRepo, userGroupRepo, modRepo }
+  const notificationRepo = require('./notificationRepo')(container)
+  return { feedRepo, jobRepo, commentRepo, reactionRepo, uploadRepo, userRepo, groupRepo, userGroupRepo, modRepo, notificationRepo }
 }
 const connect = (container) => {
   const dbPool = container.resolve('redisHelper')

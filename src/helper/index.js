@@ -15,6 +15,7 @@ module.exports = container => {
   const userGroupCdcHelper = require('./userGroupCdcHelper')(container)
   const modCdcHelper = require('./modCdcHelper')(container)
   const modSdpHelper = require('./modSdpHelper')(container)
+  const notificationSdpHelper = require('./notificationSdpHelper')(container)
   return {
     userHelper,
     feedCdcHelper,
@@ -31,6 +32,7 @@ module.exports = container => {
     userGroupCdcHelper,
     userGroupSdpHelper,
     modCdcHelper,
-    modSdpHelper
+    modSdpHelper,
+    notificationSdpHelper
   }
 }
