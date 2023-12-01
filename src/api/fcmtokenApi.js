@@ -5,6 +5,4 @@ module.exports = (app, container) => {
   app.put(`${basePath}/fcmtokens/:id`, fcmtokenController.updateFcmtoken)
   app.delete(`${basePath}/fcmtokens/:id`, fcmtokenController.deleteFcmtoken)
   app.post(`${basePath}/fcmtokens`, fcmtokenController.createFcmtoken)
-  app.get(`${basePath}/fcmtokens`, fcmtokenController.getFcmtoken)
-  app.get(`${basePath}/fcmtokens/:id`, fcmtokenController.getFcmtokenById)
 }
