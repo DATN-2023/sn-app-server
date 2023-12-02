@@ -4,4 +4,5 @@ module.exports = (app, container) => {
   const { basePath } = serverSettings
   app.get(`${basePath}/notifications`, notificationController.getNotification)
   app.get(`${basePath}/notifications/:id`, notificationController.getNotificationById)
+  app.put(`${basePath}/notifications/:id`, notificationController.updateNotification)
 }

@@ -7,7 +7,7 @@ module.exports = (container) => {
     try {
       const { _id } = req.userToken
       const query = req.query
-      query.createdBy = _id
+      query.alertUser = _id
       const { statusCode, data, msg } = await notificationRepo.getNotification(query)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
@@ -33,8 +33,24 @@ module.exports = (container) => {
     }
   }
 
+  const updateNotification = async (req, res) => {
+    try {
+      const { id } = req.params
+      const body = req.body
+      const { statusCode, data, msg } = await notificationRepo.updateNotification(id, body)
+      if (statusCode !== httpCode.SUCCESS) {
+        return res.status(httpCode.BAD_REQUEST).json(msg)
+      }
+      res.status(statusCode).json(data)
+    } catch (e) {
+      logger.e(e)
+      res.status(httpCode.UNKNOWN_ERROR).json({ msg: 'UNKNOWN ERROR' })
+    }
+  }
+
   return {
     getNotificationById,
-    getNotification
+    getNotification,
+    updateNotification
   }
 }

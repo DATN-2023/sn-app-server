@@ -1,6 +1,6 @@
 module.exports = container => {
   const { handleCacheOnRepo } = container.resolve('handleCache')
-  const { notificationSdpHelper } = container.resolve('helper')
+  const { notificationSdpHelper, notificationCdcHelper } = container.resolve('helper')
 
   const getNotification = async (q) => {
     // const key = `getNotification-${q.constructor === Object ? JSON.stringify(q) : q}`
@@ -12,8 +12,13 @@ module.exports = container => {
     return handleCacheOnRepo(key, notificationSdpHelper.getNotificationById, id)
   }
 
+  const updateNotification = async (id, body) => {
+    return notificationCdcHelper.updateNotification(id, body)
+  }
+
   return {
     getNotification,
-    getNotificationById
+    getNotificationById,
+    updateNotification
   }
 }
