@@ -10,8 +10,8 @@ module.exports = container => {
     return fcmtokenCdcHelper.updateFcmtoken(id, body)
   }
 
-  const deleteFcmtoken = async (id) => {
-    return fcmtokenCdcHelper.deleteFcmtoken(id)
+  const deleteFcmtoken = async (body) => {
+    return fcmtokenCdcHelper.deleteFcmtoken(body)
   }
   return {
     createFcmtoken,

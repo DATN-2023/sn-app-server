@@ -3,6 +3,6 @@ module.exports = (app, container) => {
   const { fcmtokenController } = container.resolve('controller')
   const { basePath } = serverSettings
   app.put(`${basePath}/fcmtokens/:id`, fcmtokenController.updateFcmtoken)
-  app.delete(`${basePath}/fcmtokens/:id`, fcmtokenController.deleteFcmtoken)
+  app.delete(`${basePath}/fcmtokens`, fcmtokenController.deleteFcmtoken)
   app.post(`${basePath}/fcmtokens`, fcmtokenController.createFcmtoken)
 }
