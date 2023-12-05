@@ -59,6 +59,10 @@ module.exports = (container) => {
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
+      const { data: feeds } = data
+      for (const feed of feeds) {
+        feed.isOwn = _id === feed.createdBy
+      }
       return res.status(httpCode.SUCCESS).json(data)
     } catch (e) {
       logger.e(e)
@@ -74,6 +78,7 @@ module.exports = (container) => {
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
+      data.isOwn = _id === feedRepo.createdBy
       return res.status(httpCode.SUCCESS).json(data)
     } catch (e) {
       logger.e(e)
@@ -84,10 +89,15 @@ module.exports = (container) => {
   const getFeedsOfUser = async (req, res) => {
     try {
       const { _id } = req.userToken
-      const { id } = req.params
-      const { statusCode, data, msg } = await feedRepo.getFeedsOfUser(`${id}-${_id}`)
+      const q = req.query
+      q.userRequest = _id
+      const { statusCode, data, msg } = await feedRepo.getFeedsOfUser(q)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
+      }
+      const { data: feeds } = data
+      for (const feed of feeds) {
+        feed.isOwn = _id === feed.createdBy
       }
       return res.status(httpCode.SUCCESS).json(data)
     } catch (e) {

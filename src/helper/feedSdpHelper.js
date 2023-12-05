@@ -43,12 +43,13 @@ module.exports = (container) => {
       return { statusCode: httpCode.BAD_REQUEST, msg: '' }
     }
   }
-  const getFeedsOfUser = async (id) => {
+  const getFeedsOfUser = async (q) => {
     try {
       const options = {
         headers: { 'x-access-token': accessToken },
-        url: `${sdpUrl}/feeds/users/${id}`,
+        url: `${sdpUrl}/feeds/users`,
         json: true,
+        params: q,
         method: 'GET'
       }
       const { data } = await axios(options)

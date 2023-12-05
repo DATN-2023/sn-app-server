@@ -12,9 +12,9 @@ module.exports = container => {
     return handleCacheOnRepo(key, feedSdpHelper.getFeedById, id)
   }
 
-  const getFeedsOfUser = async (id) => {
-    const key = `getFeedsOfUser-${id}`
-    return handleCacheOnRepo(key, feedSdpHelper.getFeedsOfUser, id)
+  const getFeedsOfUser = async (q) => {
+    const key = `getFeedsOfUser-${q.constructor === Object ? JSON.stringify(q) : q}`
+    return handleCacheOnRepo(key, feedSdpHelper.getFeedsOfUser, q)
   }
 
   const createFeed = async (body) => {
