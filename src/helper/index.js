@@ -18,6 +18,7 @@ module.exports = container => {
   const notificationSdpHelper = require('./notificationSdpHelper')(container)
   const fcmtokenCdcHelper = require('./fcmtokenCdcHelper')(container)
   const notificationCdcHelper = require('./notificationCdcHelper')(container)
+  const chatCdcHelper = require('./chatCdcHelper')(container)
   return {
     userHelper,
     feedCdcHelper,
@@ -37,6 +38,7 @@ module.exports = container => {
     modSdpHelper,
     notificationSdpHelper,
     fcmtokenCdcHelper,
-    notificationCdcHelper
+    notificationCdcHelper,
+    chatCdcHelper
   }
 }

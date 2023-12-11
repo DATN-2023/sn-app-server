@@ -10,6 +10,7 @@ const repo = (container) => {
   const modRepo = require('./modRepo')(container)
   const notificationRepo = require('./notificationRepo')(container)
   const fcmtokenRepo = require('./fcmtokenRepo')(container)
+  const chatRepo = require('./chatRepo')(container)
   return {
     feedRepo,
     jobRepo,
@@ -21,7 +22,8 @@ const repo = (container) => {
     userGroupRepo,
     modRepo,
     notificationRepo,
-    fcmtokenRepo
+    fcmtokenRepo,
+    chatRepo
   }
 }
 const connect = (container) => {
