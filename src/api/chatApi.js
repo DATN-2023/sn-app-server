@@ -5,4 +5,6 @@ module.exports = (app, container) => {
   app.put(`${basePath}/channels/:id`, chatController.updateChannel)
   app.delete(`${basePath}/channels/:id`, chatController.deleteChannel)
   app.post(`${basePath}/channels`, chatController.createChannel)
+  app.get(`${basePath}/messages`, chatController.getMessage)
+  app.get(`${basePath}/messages/:id`, chatController.getMessageById)
 }

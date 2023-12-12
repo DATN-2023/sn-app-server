@@ -48,9 +48,38 @@ module.exports = (container) => {
             res.status(httpCode.UNKNOWN_ERROR).json({msg: 'UNKNOWN ERROR'})
         }
     }
+    const getMessage = async (req, res) => {
+        try {
+            const query = req.query
+            const { statusCode, data, msg } = await chatRepo.getMessage(query)
+            if (statusCode !== httpCode.SUCCESS) {
+                return res.status(statusCode).json({ msg })
+            }
+            return res.status(httpCode.SUCCESS).json(data)
+        } catch (e) {
+            logger.e(e)
+            res.status(httpCode.UNKNOWN_ERROR).json({ msg: 'UNKNOWN ERROR' })
+        }
+    }
+
+    const getMessageById = async (req, res) => {
+        try {
+            const { id } = req.params
+            const { statusCode, data, msg } = await chatRepo.getMessageById(id)
+            if (statusCode !== httpCode.SUCCESS) {
+                return res.status(statusCode).json({ msg })
+            }
+            return res.status(httpCode.SUCCESS).json(data)
+        } catch (e) {
+            logger.e(e)
+            res.status(httpCode.UNKNOWN_ERROR).json({ msg: 'UNKNOWN ERROR' })
+        }
+    }
     return {
         createChannel,
         updateChannel,
-        deleteChannel
+        deleteChannel,
+        getMessageById,
+        getMessage
     }
 }
