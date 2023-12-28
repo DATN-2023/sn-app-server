@@ -78,7 +78,7 @@ module.exports = (container) => {
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
-      data.isOwn = _id === feedRepo.createdBy
+      data.isOwn = (_id === data.createdBy)
       return res.status(httpCode.SUCCESS).json(data)
     } catch (e) {
       logger.e(e)
