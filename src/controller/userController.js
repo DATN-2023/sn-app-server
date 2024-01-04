@@ -73,6 +73,8 @@ module.exports = (container) => {
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
+      if (_id === data.customerId) data.isMe = 1
+      else data.isMe = 0
       return res.status(httpCode.SUCCESS).json(data)
     } catch (e) {
       logger.e(e)
@@ -89,6 +91,7 @@ module.exports = (container) => {
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
+      data.isMe = 1
       return res.status(httpCode.SUCCESS).json(data)
     } catch (e) {
       logger.e(e)
