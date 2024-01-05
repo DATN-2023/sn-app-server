@@ -84,6 +84,7 @@ const redisConfig = {
   expireSearch: process.env.EXPIRE_SEARCH || 24 * 7 * 60 * 60
 }
 
+
 const urlConfig = {
   cdcUrl: process.env.CDC_URL || 'http://localhost:8002',
   sdpUrl: process.env.SDP_URL || 'http://localhost:8001',
