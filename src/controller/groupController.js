@@ -51,6 +51,8 @@ module.exports = (container) => {
   const getGroup = async (req, res) => {
     try {
       const query = req.query
+      const user = req.userToken
+      query.userGroup = user._id
       const { statusCode, data, msg } = await groupRepo.getGroup(query)
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
