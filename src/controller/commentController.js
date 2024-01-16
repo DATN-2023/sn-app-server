@@ -57,6 +57,11 @@ module.exports = (container) => {
       if (statusCode !== httpCode.SUCCESS) {
         return res.status(statusCode).json({ msg })
       }
+      const {data: comments} = data
+      for (const comment of comments) {
+        if (_id === comment.createdBy) comment.isOwn = 1
+        else comment.isOwn = 0
+      }
       return res.status(httpCode.SUCCESS).json(data)
     } catch (e) {
       logger.e(e)
